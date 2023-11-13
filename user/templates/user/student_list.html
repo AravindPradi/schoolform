@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2 style="text-center">New Students Register Here</h2>
+
+  <p>
+    <a href="{% url 'student_add' %}">Add Student</a>
+  </p>
+
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Birthdate</th>
+        <th scope="col">Department</th>
+        <th scope="col">Branch</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for student in students %}
+        <tr>
+          <td>
+            <h5>{{ student.name }}</h5>
+          </td>
+          <td>{{ student.birthdate }}</td>
+          <td>{{ student.college.name }}</td>
+          <td>{{ student.branch.name }}</td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="4">
+            <a href="{% url 'student_add' %}">Add the first person</a>.
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <style>
+    /* Increase the row height */
+    table tbody tr {
+      height: 50px; /* Adjust the value as needed */
+    }
+
+    /* Increase the column width */
+    table tbody td {
+      min-width: 150px; /* Adjust the value as needed */
+    }
+  </style>
+{% endblock %}
